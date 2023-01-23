@@ -32,7 +32,7 @@ int flywheelStep(){
   while(true){
    flyt = flywheelController.step(10000,FlywheelMotorGroup.voltage(voltageUnits::mV));
   FlywheelMotorGroup.spin(forward,flyt,voltageUnits::mV);
-  std::cout << FlywheelMotorGroup.velocity(rpm) << "\n";
+  //std::cout << FlywheelMotorGroup.velocity(rpm) << "\n";
   
   
              }
@@ -43,7 +43,7 @@ int flywheelStep(){
 
 void flyPneum(){
 FlyPneum.set(true);
-wait(100,msec);
+wait(200,msec);
 FlyPneum.set(false);
 }
 
@@ -88,7 +88,7 @@ void pre_auton(){
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-   task g1(grapher);
+  //task g1(grapher);
   Drivetrain.setDriveVelocity(100,percent);
   Drivetrain.setTurnVelocity(100,percent);
   IntakeMotorGroup.setMaxTorque(100,percent);
