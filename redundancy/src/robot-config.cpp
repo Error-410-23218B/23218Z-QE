@@ -90,10 +90,10 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(forward);
       }
 
-            if (Controller1.ButtonR1.pressing()) {
+            if (Controller1.ButtonR2.pressing()) {
         IntakeMotorGroup.spin(forward);
         Controller1RightShoulderControlMotorsStopped = false;
-      } else if (Controller1.ButtonR2.pressing()) {
+      } else if (Controller1.ButtonR1.pressing()) {
         IntakeMotorGroup.spin(reverse);
         Controller1RightShoulderControlMotorsStopped = false;
       } else if (!Controller1RightShoulderControlMotorsStopped) {
