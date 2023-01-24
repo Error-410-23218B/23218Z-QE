@@ -6,7 +6,7 @@
 // Structure used to declare variables, at bottom multiple instances of the
 // structure are declared, use same variable in "different" ways.
 
-eftl::PIDController flywheelController(2.35,0.0,0.85,0.1875);
+eftl::PIDController flywheelController(2.36,0.0013,0.85,0.1876);
 eftl::PIDController driveVelocityController(0.0, 0.0, 0.0, 0.0);
 eftl::PIDController drivePosController(0.0, 0.0, 0.0, 0.0);
 eftl::PIDController turnController(0.0, 0.0, 0.0, 0.0);

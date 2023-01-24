@@ -19,8 +19,8 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
-#include "pid.h"
-#include "autonomous.h"
+  #include "pid.h"
+  #include "autonomous.h"
 #include "graph.h"
 #include <iostream>
 using namespace vex;
@@ -30,7 +30,7 @@ bool rintakebutton = false;
  
 int flywheelStep(){
   while(true){
-   flyt = flywheelController.step(10000,FlywheelMotorGroup.voltage(voltageUnits::mV));
+   flyt = flywheelController.step(11500,FlywheelMotorGroup.voltage(voltageUnits::mV));
   FlywheelMotorGroup.spin(forward,flyt,voltageUnits::mV);
   //std::cout << FlywheelMotorGroup.velocity(rpm) << "\n";
   
@@ -43,8 +43,9 @@ int flywheelStep(){
 
 void flyPneum(){
 FlyPneum.set(true);
-wait(200,msec);
+wait(100,msec);
 FlyPneum.set(false);
+
 }
 
 void extend(){
