@@ -7,11 +7,11 @@
 void callBack();
 void autonomous();
 void visionMethod();
-void redShort();
-void redLong();
-void blueShort();
-void blueLong();
-void GUI();
+void redShortN();
+void redLongN();
+void blueShortN();
+void blueLongN();
+int GUI();
 void redLSelect();
 void redSSelect();
 void blueLSelect();

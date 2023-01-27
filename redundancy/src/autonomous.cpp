@@ -15,6 +15,8 @@ bool redLon;
 bool redSon;
 bool blueLon;
 bool blueSon;
+const double Pt = 1.8;
+const double Dt = 2.8;
 const double inches = 25.4;
 // autonomous function,when run it runs the selected autonomous that was
 // selected when GUI(); is ran
@@ -36,12 +38,18 @@ void flyp(){
 
 void extp(){
   ExtensionPneum.set(true);
-  wait(100,msec);
+  wait(200,msec);
   ExtensionPneum.set(false);
 }
 
 
 // intake method, simply runs intake during autonomous
+int reverseIntake(){
+  IntakeMotorGroup.setVelocity(100,percent);
+  IntakeMotorGroup.spin(reverse);
+  return 0;
+}
+
 int intake()
 {
   IntakeMotorGroup.setVelocity(100, percent);
@@ -92,7 +100,7 @@ void redRoller()
     roller_y = 0;
     */
 
-    IntakeMotorGroup.spinFor(forward,0.5,rev);
+    IntakeMotorGroup.spinFor(forward,0.7,rev);
   
 }
 
@@ -155,7 +163,7 @@ void redShort()
   Drivetrain.driveFor(2 * Tile, forward);
   // Drivetrain.turnFor(right,135,degrees);
   Drivetrain.turnFor(right,135);
-  Drivetrain.driveFor(2 * Tile,forward);
+  Drivetrain.driveFor(2 *  Tile,forward);
   // Drivetrain.turnFor(right,45,degrees);
   Drivetrain.turnFor(right,45);
   Drivetrain.driveFor(2,forward);
@@ -168,29 +176,27 @@ void redShort()
 
 void redLongN(){
   task t1(intake);
-  Drivetrain.driveFor(reverse,10,mm);
-  redRoller();
-  Drivetrain.driveFor(forward,10,mm);  
+  redRoller();  
   Drivetrain.turnFor(right,225,degrees);
-  Drivetrain.driveFor(forward,2*Tile,mm);
+  Drivetrain.driveFor(forward,2*Tile*Dt,mm);
   Drivetrain.driveFor(reverse,0.45*Tile,mm);
   Drivetrain.turnFor(left,90,degrees);
   flyp();
   Drivetrain.turnFor(right,135,degrees);
-  Drivetrain.driveFor(forward,0.25*Tile,mm);
+  Drivetrain.driveFor(forward,0.25*Tile*Dt,mm);
   Drivetrain.turnFor(left,135,degrees);  
-  Drivetrain.driveFor(forward,1*Tile,mm);
+  Drivetrain.driveFor(forward,1*Tile*Dt,mm);
   t1.stop();
 
 
 }
 void redShortN(){
   task t1(intake);
-  Drivetrain.driveFor(forward,2*Tile,mm);
+  Drivetrain.driveFor(forward,2*Tile*Dt,mm);
   Drivetrain.turnFor(left,125,degrees);
   for(int i = 0; i++; i<3)flyp();
   Drivetrain.turnFor(right,180,degrees);
-  Drivetrain.driveFor(forward,2.5*Tile,mm);
+  Drivetrain.driveFor(forward,2.5*Tile*Dt,mm);
   Drivetrain.driveFor(forward,10,mm);
   redRoller();
   Drivetrain.driveFor(reverse,10,mm);
@@ -198,27 +204,25 @@ void redShortN(){
 }
 void blueLongN(){
   task t1(intake);
-  Drivetrain.driveFor(reverse,10,mm);
   blueRoller();
-  Drivetrain.driveFor(forward,10,mm);  
   Drivetrain.turnFor(right,225,degrees);
-  Drivetrain.driveFor(forward,2*Tile,mm);
-  Drivetrain.driveFor(reverse,0.45*Tile,mm);
+  Drivetrain.driveFor(forward,2*Tile*Dt,mm);
+  Drivetrain.driveFor(reverse,0.45*Tile*Dt,mm);
   Drivetrain.turnFor(left,90,degrees);
   flyp();
   Drivetrain.turnFor(right,135,degrees);
-  Drivetrain.driveFor(forward,0.25*Tile,mm);
+  Drivetrain.driveFor(forward,0.25*Tile*Dt,mm);
   Drivetrain.turnFor(left,135,degrees);  
-  Drivetrain.driveFor(forward,1*Tile,mm);
+  Drivetrain.driveFor(forward,1*Tile*Dt,mm);
   t1.stop();
 }
 void blueShortN(){
   task t1(intake);
-  Drivetrain.driveFor(forward,2*Tile,mm);
+  Drivetrain.driveFor(forward,2*Tile*Dt,mm);
   Drivetrain.turnFor(left,125,degrees);
   flyp();
   Drivetrain.turnFor(right,180,degrees);
-  Drivetrain.driveFor(forward,2.5*Tile,mm);
+  Drivetrain.driveFor(forward,2.5*Tile*Dt,mm);
   Drivetrain.driveFor(forward,10,mm);
   blueRoller();
   Drivetrain.driveFor(reverse,10,mm);
@@ -226,25 +230,58 @@ void blueShortN(){
 }
 
 void skillAuton(){
-    redRoller();
-    Drivetrain.driveFor(reverse,1*Tile,distanceUnits::in);
+    Drivetrain.setTimeout(1,sec);
+    //Drivetrain.driveFor(forward,10,mm);
+    redRoller();  
+    Drivetrain.driveFor(reverse,1*Tile*Dt,distanceUnits::in);
     Drivetrain.turnFor(right,90,degrees);
-    Drivetrain.driveFor(forward,1*Tile,distanceUnits::in);
+    Drivetrain.driveFor(forward,1.2*Tile *Dt,distanceUnits::in);
     redRoller();
-    Drivetrain.driveFor(reverse,3*Tile,distanceUnits::in);
-    Drivetrain.turnFor(right,90,degrees);
-    Drivetrain.driveFor(forward,3*Tile,distanceUnits::in);
-    Drivetrain.turnFor(left,90,degrees);
-    Drivetrain.driveFor(forward,1.083*Tile,distanceUnits::in);
-    redRoller();
-    Drivetrain.driveFor(reverse,1*Tile,distanceUnits::in);
-    Drivetrain.turnFor(right,90,degrees);
-    Drivetrain.driveFor(forward,1*Tile,distanceUnits::in);
-    redRoller();
-    Drivetrain.driveFor(reverse,2*Tile,distanceUnits::in);
-    Drivetrain.turnFor(left,90,degrees);
-    Drivetrain.driveFor(reverse,1*Tile,distanceUnits::in);
+    Drivetrain.driveFor(reverse,0.9*Tile*Dt,distanceUnits::in);
+    Drivetrain.turnFor(left,45,degrees);
+      Drivetrain.driveFor(forward,0.6*Tile*Dt,distanceUnits::in);
     extp();
+
+    /*
+    Drivetrain.driveFor(reverse,1*Tile *Dt,distanceUnits::in);
+    Drivetrain.turnFor(right,150,degrees);
+    Drivetrain.driveFor(forward,4.5*Tile*Dt,distanceUnits::in);
+    Drivetrain.turnFor(left,50,degrees);
+    */
+    
+
+        /*
+        Drivetrain.driveFor(forward,2*Tile,distanceUnits::in);
+        redRoller();
+        Drivetrain.driveFor(reverse,1*Tile *Dt,distanceUnits::in);
+        Drivetrain.turnFor(right,90,degrees);
+        Drivetrain.driveFor(forward,1*Tile *Dt,distanceUnits::in);
+        Drivetrain.driveFor(forward,1,distanceUnits::in);
+      redRoller();
+      */
+      
+
+
+    
+
+
+
+    /*
+    Drivetrain.driveFor(reverse,3*Tile*Dt,distanceUnits::in);
+    Drivetrain.turnFor(right,90,degrees);
+    Drivetrain.driveFor(forward,3*Tile*Dt,distanceUnits::in);
+    Drivetrain.turnFor(left,90,degrees);
+    Drivetrain.driveFor(forward,1.083*Tile*Dt,distanceUnits::in);
+    redRoller();
+    Drivetrain.driveFor(reverse,1*Tile*Dt,distanceUnits::in);
+    Drivetrain.turnFor(right,90,degrees);
+    Drivetrain.driveFor(forward,1*Tile*Dt,distanceUnits::in);
+    redRoller();
+    Drivetrain.driveFor(reverse,2*Tile*Dt,distanceUnits::in);
+    Drivetrain.turnFor(left,90,degrees);
+    Drivetrain.driveFor(reverse,1*Tile*Dt,distanceUnits::in);
+    extp();
+    */
 
 }
 void autonomous()

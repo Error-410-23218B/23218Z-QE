@@ -30,7 +30,7 @@ bool rintakebutton = false;
  
 int flywheelStep(){
   while(true){
-   flyt = flywheelController.step(11500,FlywheelMotorGroup.voltage(voltageUnits::mV));
+   flyt = flywheelController.step(10000,FlywheelMotorGroup.voltage(voltageUnits::mV));
   FlywheelMotorGroup.spin(forward,flyt,voltageUnits::mV);
   //std::cout << FlywheelMotorGroup.velocity(rpm) << "\n";
   
@@ -86,16 +86,27 @@ void pre_auton(){
 
 }
 
+void driveTest(){
+  Drivetrain.driveFor(forward,300*6,mm);
+}
+
+void turnTest(){
+  Drivetrain.turnFor(right,90,degrees);
+}
+
+
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  //task g1(grapher);
+  task g1(GUI);
   Drivetrain.setDriveVelocity(100,percent);
   Drivetrain.setTurnVelocity(100,percent);
-  IntakeMotorGroup.setMaxTorque(100,percent);
-  IntakeMotorGroup.setVelocity(100,percent);  
+  IntakeMotorGroup.setMaxTorque(200,percent);
+  IntakeMotorGroup.setVelocity(200,percent);  
  Competition.drivercontrol(drivercontrol);
  Controller1.ButtonRight.pressed(skillAuton);
+ Controller1.ButtonUp.pressed(driveTest);
+ Controller1.ButtonDown.pressed(turnTest);
 
 
 }
