@@ -23,6 +23,8 @@
   #include "autonomous.h"
 #include "graph.h"
 #include <iostream>
+#include <stdio.h>
+
 using namespace vex;
 double flyt;
 bool intakebutton = false;
@@ -32,7 +34,8 @@ int flywheelStep(){
   while(true){
    flyt = flywheelController.step(10000,FlywheelMotorGroup.voltage(voltageUnits::mV));
   FlywheelMotorGroup.spin(forward,flyt,voltageUnits::mV);
-  //std::cout << FlywheelMotorGroup.velocity(rpm) << "\n";
+  std::cout << "PV: " << flyt <<"%10d %ld" << "Out: " << FlywheelMotorGroup.velocity(rpm);
+
   
   
              }
@@ -43,7 +46,7 @@ int flywheelStep(){
 
 void flyPneum(){
 FlyPneum.set(true);
-wait(100,msec);
+wait(150,msec);
 FlyPneum.set(false);
 
 }
@@ -65,7 +68,11 @@ void Reverseintake(){
 }
 void  flywheel(){
   task f1(flywheelStep);
-  if(Controller1.ButtonL2.pressing()){f1.stop(); FlywheelMotorGroup.stop(); }
+  FlywheelMotorGroup.setVelocity(100,percent);
+  FlywheelMotorGroup.setMaxTorque(100,percent);
+  FlywheelMotorGroup.spin(forward);
+  
+  if(Controller1.ButtonL2.pressing()){f1.stop();FlywheelMotorGroup.stop(); }
   
 
 }
@@ -73,8 +80,8 @@ void  flywheel(){
 
 
 void drivercontrol(){
-  Controller1.ButtonB.pressed(flyPneum);
-  Controller1.ButtonX.pressed(extend);
+  Controller1.ButtonX.pressed(flyPneum);
+  Controller1.ButtonUp.pressed(extend);
    Controller1.ButtonL1.pressed(flywheel);
 
  
@@ -97,16 +104,18 @@ void turnTest(){
 
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
+
   vexcodeInit();
   task g1(GUI);
   Drivetrain.setDriveVelocity(100,percent);
+  FlywheelMotorGroup.setMaxTorque(100,percent);
   Drivetrain.setTurnVelocity(100,percent);
   IntakeMotorGroup.setMaxTorque(200,percent);
   IntakeMotorGroup.setVelocity(200,percent);  
  Competition.drivercontrol(drivercontrol);
  Controller1.ButtonRight.pressed(skillAuton);
- Controller1.ButtonUp.pressed(driveTest);
- Controller1.ButtonDown.pressed(turnTest);
+  
+
 
 
 }
