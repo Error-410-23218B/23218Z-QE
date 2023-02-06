@@ -277,19 +277,28 @@ void skillAuton()
     */
 
 }
+
 void autonomous()
 {
-  if (redLon)
+  task fly(flywheelST);
+  if (redLon){
     Drivetrain.driveFor(forward,40*Dt,mm);
     redRoller();
-    task fly(flywheelST);
-    for(int i = 0; i++; i<2){
+    for(int i = 0; i<2; i++){
     flyp();
     wait(3000,msec);
     }
-  if (blueLon)
+    fly.stop();
+}
+  if (blueLon){
     Drivetrain.driveFor(forward,30*Dt,mm);
       blueRoller();
+    for(int i = 0; i<2;i++){
+    flyp();
+    wait(3000,msec);
+    }
+    fly.stop();
+}
   if (redSon)
     Drivetrain.driveFor(forward,40*Dt,mm);
     redRoller();
