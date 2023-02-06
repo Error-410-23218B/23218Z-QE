@@ -36,6 +36,7 @@ public:
 
 
 extern eftl::PIDController flywheelController;
+extern eftl::PIDController flywheelAutonController;
 extern eftl::PIDController driveVelocityController;
 extern eftl::PIDController drivePosController;
 extern eftl::PIDController turnController;

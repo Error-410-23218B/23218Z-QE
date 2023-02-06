@@ -4,6 +4,8 @@
 #include "pid.h"
 #include "vex.h"
 
+
+
 // Tile variable is the amount of inches in one tile
 const double Tile = 12.0;
 // Roller positions
@@ -30,6 +32,7 @@ void blueSSelect() { blueSon = true; }
 void flyp()
 {
   FlyPneum.set(true);
+  wait(150,msec);
   FlyPneum.set(false);
 }
 
@@ -38,6 +41,12 @@ void extp()
   ExtensionPneum.set(true);
   wait(200, msec);
   ExtensionPneum.set(false);
+}
+
+int flywheelST(){
+  double flyat = flywheelAutonController.step(11500,FlywheelMotorGroup.voltage(voltageUnits::mV));
+  FlywheelMotorGroup.spin(forward,flyat,voltageUnits::mV);
+  return 0;
 }
 
 // intake method, simply runs intake during autonomous
@@ -270,10 +279,14 @@ void skillAuton()
 }
 void autonomous()
 {
-
   if (redLon)
     Drivetrain.driveFor(forward,40*Dt,mm);
     redRoller();
+    task fly(flywheelST);
+    for(int i = 0; i++; i<2){
+    flyp();
+    wait(3000,msec);
+    }
   if (blueLon)
     Drivetrain.driveFor(forward,30*Dt,mm);
       blueRoller();

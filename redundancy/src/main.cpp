@@ -34,7 +34,7 @@ int flywheelStep(){
   while(true){
    flyt = flywheelController.step(10000,FlywheelMotorGroup.voltage(voltageUnits::mV));
   FlywheelMotorGroup.spin(forward,flyt,voltageUnits::mV);
-  std::cout << "PV: " << flyt <<"%10d %ld" << "Out: " << FlywheelMotorGroup.velocity(rpm);
+  
 
   
   
