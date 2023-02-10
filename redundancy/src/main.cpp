@@ -22,6 +22,7 @@
   #include "pid.h"
   #include "autonomous.h"
 #include "graph.h"
+#include "robot-config.h"
 #include <iostream>
 #include <stdio.h>
 
@@ -32,12 +33,11 @@ bool rintakebutton = false;
  
 int flywheelStep(){
   while(true){
-   flyt = flywheelController.step(10000,FlywheelMotorGroup.voltage(voltageUnits::mV));
+   flyt = flywheelController.step(10200,FlywheelMotorGroup.voltage(voltageUnits::mV));
   FlywheelMotorGroup.spin(forward,flyt,voltageUnits::mV);
-  
 
-  
-  
+
+
              }
              return 0;
              
@@ -56,6 +56,14 @@ void extend(){
   wait(100,msec);
   ExtensionPneum.set(false);
 
+}
+
+void exte(){
+  ExtensionPneum.set(true);
+}
+
+void extef(){
+  ExtensionPneum.set(false);
 }
 
 void Intake(){
@@ -81,8 +89,9 @@ void  flywheel(){
 
 void drivercontrol(){
   Controller1.ButtonX.pressed(flyPneum);
-  Controller1.ButtonUp.pressed(extend);
+  Controller1.ButtonUp.pressed(exte);
    Controller1.ButtonL1.pressed(flywheel);
+  Controller1.ButtonDown.pressed(extef);
 
  
 
@@ -101,6 +110,10 @@ void turnTest(){
   Drivetrain.turnFor(right,90,degrees);
 }
 
+
+void lights(int _red,int _green,int _blue){
+  
+}
 
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!

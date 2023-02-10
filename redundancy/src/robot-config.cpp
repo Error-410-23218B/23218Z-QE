@@ -2,7 +2,6 @@
 
 using namespace vex;
 using signature = vision::signature;
-using code = vision::code;
 
 // A global instance of brain used for printing to the V5 Brain screen
 brain  Brain;
@@ -25,6 +24,9 @@ motor FlywheelMotorGroupMotorB = motor(PORT16, ratio6_1, true);
 motor_group FlywheelMotorGroup = motor_group(FlywheelMotorGroupMotorA, FlywheelMotorGroupMotorB);
 digital_out FlyPneum = digital_out(Brain.ThreeWirePort.A);
 digital_out ExtensionPneum = digital_out(Brain.ThreeWirePort.B);
+motor29 redLED = motor29(Brain.ThreeWirePort.C,false);
+motor29 greenLED = motor29(Brain.ThreeWirePort.D,false);
+motor29 blueLED  = motor29(Brain.ThreeWirePort.E,false);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable

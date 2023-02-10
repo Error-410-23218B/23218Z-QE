@@ -299,12 +299,15 @@ void autonomous()
     }
     fly.stop();
 }
-  if (redSon)
+  if (redSon){
     Drivetrain.driveFor(forward,40*Dt,mm);
     redRoller();
-  if (blueSon)
+    fly.stop();
+  }
+if (blueSon){
       Drivetrain.driveFor(forward,30*Dt,mm);
       blueRoller();
-
+      fly.stop();
+}
 
 }
