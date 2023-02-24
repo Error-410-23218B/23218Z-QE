@@ -55,20 +55,12 @@ void RedSelect(){
   Brain.Screen.drawRectangle(120, 160, 80, 80);
   Brain.Screen.drawRectangle(280, 0, 80, 80);
   Brain.Screen.setFillColor(white);
-  Brain.Screen.drawLine(120, 0, 120, 240);
-  Brain.Screen.drawLine(160, 0, 160, 240);
-  Brain.Screen.drawLine(200, 0, 200, 240);
-  Brain.Screen.drawLine(240, 0, 240, 240);
-  Brain.Screen.drawLine(280, 0, 280, 240);
-  Brain.Screen.drawLine(320, 0, 320, 240);
-  Brain.Screen.drawLine(360, 0, 360, 240);
-  Brain.Screen.drawLine(120, 0, 360, 0);
-  Brain.Screen.drawLine(120, 40, 360, 40);
-  Brain.Screen.drawLine(120, 80, 360, 80);
-  Brain.Screen.drawLine(120, 120, 360, 120);
-  Brain.Screen.drawLine(120, 160, 360, 160);
-  Brain.Screen.drawLine(120, 200, 360, 200);
-  Brain.Screen.drawLine(120, 240, 360, 240);
+  for(int i = 120; i<360;i+=40){
+  Brain.Screen.drawLine(i, 0, i, 240);
+  }
+  for(int j = 0; j<240; j+=40){
+  Brain.Screen.drawLine(120, j, 360, j);
+  }
   Brain.Screen.setFillColor(red);
   Brain.Screen.drawRectangle(120, 40, 40, 40);
   Brain.Screen.drawRectangle(240, 200, 40, 40);

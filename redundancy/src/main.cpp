@@ -53,17 +53,23 @@ FlyPneum.set(false);
 
 void extend(){
   ExtensionPneum.set(true);
+  ExtensionPneum2.set(true);
   wait(100,msec);
   ExtensionPneum.set(false);
+  ExtensionPneum2.set(false);
 
 }
 
 void exte(){
   ExtensionPneum.set(true);
+  ExtensionPneum2.set(true);
 }
 
 void extef(){
   ExtensionPneum.set(false);
+  ExtensionPneum.set(false);
+
+  
 }
 
 void Intake(){
@@ -91,10 +97,7 @@ void drivercontrol(){
   Controller1.ButtonX.pressed(flyPneum);
   Controller1.ButtonUp.pressed(exte);
    Controller1.ButtonL1.pressed(flywheel);
-  Controller1.ButtonDown.pressed(extef);
-
- 
-
+   Controller1.ButtonDown.pressed(extef);
 }
 
 
@@ -111,9 +114,7 @@ void turnTest(){
 }
 
 
-void lights(int _red,int _green,int _blue){
-  
-}
+
 
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!

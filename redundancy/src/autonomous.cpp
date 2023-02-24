@@ -4,8 +4,6 @@
 #include "pid.h"
 #include "vex.h"
 
-
-
 // Tile variable is the amount of inches in one tile
 const double Tile = 12.0;
 // Roller positions
@@ -32,7 +30,7 @@ void blueSSelect() { blueSon = true; }
 void flyp()
 {
   FlyPneum.set(true);
-  wait(150,msec);
+  wait(150, msec);
   FlyPneum.set(false);
 }
 
@@ -43,9 +41,10 @@ void extp()
   ExtensionPneum.set(false);
 }
 
-int flywheelST(){
-  double flyat = flywheelAutonController.step(11500,FlywheelMotorGroup.voltage(voltageUnits::mV));
-  FlywheelMotorGroup.spin(forward,flyat,voltageUnits::mV);
+int flywheelST()
+{
+  double flyat = flywheelAutonController.step(11500, FlywheelMotorGroup.voltage(voltageUnits::mV));
+  FlywheelMotorGroup.spin(forward, flyat, voltageUnits::mV);
   return 0;
 }
 
@@ -180,134 +179,103 @@ void redShort()
 }
 */
 
-void redLongN()
+void blueL()
 {
-  task t1(intake);
-  redRoller();
-  Drivetrain.turnFor(right, 235, degrees);
-  Drivetrain.driveFor(forward, 2 * Tile * Dt, mm);
-  Drivetrain.driveFor(reverse, 0.45 * Tile*Dt, mm);
-  Drivetrain.turnFor(left, 90, degrees);
-  flyp();
-  Drivetrain.turnFor(right, 135, degrees);
-  Drivetrain.driveFor(forward, 0.25 * Tile * Dt, mm);
-  Drivetrain.turnFor(left, 135, degrees);
-  Drivetrain.driveFor(forward, 1 * Tile * Dt, mm);
-  t1.stop();
-}
-void redShortN()
-{
-  task t1(intake);
-  Drivetrain.driveFor(forward, 2 * Tile * Dt, mm);
-  Drivetrain.turnFor(left, 125, degrees);
-  for (int i = 0; i++; i < 3)
-    flyp();
-  Drivetrain.turnFor(right, 180, degrees);
-  Drivetrain.driveFor(forward, 2.5 * Tile * Dt, mm);
-  Drivetrain.driveFor(forward, 10, mm);
-  redRoller();
-  Drivetrain.driveFor(reverse, 10, mm);
-  t1.stop();
-}
-void blueLongN()
-{
- 
-  blueRoller(); 
-  IntakeMotorGroup.spin(forward);
-  Drivetrain.turnFor(right, 225, degrees);
-  Drivetrain.driveFor(forward, 2 * Tile * Dt, mm);
-  Drivetrain.driveFor(reverse, 0.45 * Tile * Dt, mm);
-  Drivetrain.turnFor(left, 90, degrees);
-  flyp();
-  Drivetrain.turnFor(right, 135, degrees);
-  Drivetrain.driveFor(forward, 0.25 * Tile * Dt, mm);
-  Drivetrain.turnFor(left, 135, degrees);
-  Drivetrain.driveFor(forward, 1 * Tile * Dt, mm);
-  IntakeMotorGroup.stop();
-}
-void blueShortN()
-{
-  IntakeMotorGroup.spin(forward);
-  Drivetrain.driveFor(forward, 2 * Tile * Dt, mm);
-  Drivetrain.turnFor(left, 125, degrees);
-  flyp();
-  Drivetrain.turnFor(right, 180, degrees);
-  Drivetrain.driveFor(forward, 2.5 * Tile * Dt, mm);  
-  IntakeMotorGroup.stop();
-  Drivetrain.driveFor(forward, 10, mm);
   blueRoller();
-  Drivetrain.driveFor(reverse, 10, mm);
+  Drivetrain.turnFor(left, 10, degrees);
+  task f1(flywheelST);
+  for (int i = 0; i < 2; i++)
+  {
+    flyp();
+    wait(1000, msec);
+  }
 
+  f1.stop();
+}
+
+void blueS()
+{
+  Drivetrain.driveFor(forward, 1 * Tile * Dt, vex::inches);
+  Drivetrain.turnFor(right, 90, degrees);
+
+  Drivetrain.driveFor(forward, 0.4 * Tile * Dt, vex::inches);
+  Drivetrain.turnFor(left, 90, degrees);
+  Drivetrain.driveFor(forward, 1 * Tile * Dt, vex::inches);
+  blueRoller();
+  Drivetrain.turnFor(right, 10, degrees);
+  for (int i = 0; i < 3; i++)
+  {
+    flyp();
+  }
+  f1.stop();
+}
+
+void redL()
+{
+  redRoller();
+  Drivetrain.turnFor(left, 10, degrees);
+  task f1(flywheelST);
+  for (int i = 0; i < 2; i++)
+  {
+    flyp();
+    wait(1000, msec);
+  }
+  f1.stop();
+}
+
+void redS()
+{
+  Drivetrain.driveFor(forward, 1 * Tile * Dt, vex::inches);
+  Drivetrain.turnFor(right, 90, degrees);
+
+  Drivetrain.driveFor(forward, 0.4 * Tile * Dt, vex::inches);
+  Drivetrain.turnFor(left, 90, degrees);
+  Drivetrain.driveFor(forward, 1 * Tile * Dt, vex::inches);
+  blueRoller();
+  Drivetrain.turnFor(right, 10, degrees);
+  for (int i = 0; i < 3; i++)
+  {
+    flyp();
+  }
+  f1.stop();
 }
 
 void skillAuton()
 {
 
-    Drivetrain.setDriveVelocity(75,percent);
-    Drivetrain.setTimeout(20,sec);
-    Drivetrain.driveFor(forward,30*Dt,mm);
-    redRoller();
-    IntakeMotorGroup.spin(forward);
-    Drivetrain.driveFor(reverse,1.2*Tile*Dt,distanceUnits::in);
-    Drivetrain.turnFor(right,90,degrees);
-    Drivetrain.driveFor(forward,1.2*Tile *Dt,distanceUnits::in);
-    IntakeMotorGroup.stop();
-    redRoller();
-    Drivetrain.driveFor(reverse,0.2*Tile*Dt,distanceUnits::in);
-    Drivetrain.turnFor(right,135,degrees); 
-    IntakeMotorGroup.spin(forward); 
-    Drivetrain.driveFor(forward,5.5*Tile*Dt,distanceUnits::in);
-    Drivetrain.turnFor(left,45,degrees);
-    Drivetrain.driveFor(forward,1.2*Tile*Dt,distanceUnits::in);
-    redRoller();
-    Drivetrain.driveFor(reverse,1.2*Tile*Dt,distanceUnits::in);
-    Drivetrain.turnFor(right,90,degrees);
-    Drivetrain.driveFor(forward,1.2*Tile*Dt,distanceUnits::in);
-    redRoller();
-    Drivetrain.driveFor(reverse,1*Tile*Dt,distanceUnits::in);
-    Drivetrain.turnFor(left,45,degrees);
-    Drivetrain.driveFor(forward,1*Tile*Dt,distanceUnits::in);
-    extp();
-    /*IntakeMotorGroup.spin(forward); 
-    Drivetrain.driveFor(reverse,1*Tile*Dt,distanceUnits::in);
-    Drivetrain.turnFor(right,90,degrees);
-    Drivetrain.driveFor(forward,1.2*Tile *Dt,distanceUnits::in);
-    IntakeMotorGroup.stop();
-    redRoller();
-    */
+  Drivetrain.setDriveVelocity(75, percent);
+  Drivetrain.setTimeout(20, sec);
+  Drivetrain.driveFor(forward, 30 * Dt, mm);
+  redRoller();
+  IntakeMotorGroup.spin(forward);
+  Drivetrain.driveFor(reverse, 1.2 * Tile * Dt, distanceUnits::in);
+  Drivetrain.turnFor(right, 90, degrees);
+  Drivetrain.driveFor(forward, 1.2 * Tile * Dt, distanceUnits::in);
+  IntakeMotorGroup.stop();
+  redRoller();
+  Drivetrain.driveFor(reverse, 0.2 * Tile * Dt, distanceUnits::in);
+  Drivetrain.turnFor(right, 135, degrees);
+  IntakeMotorGroup.spin(forward);
+  Drivetrain.driveFor(forward, 5.5 * Tile * Dt, distanceUnits::in);
+  Drivetrain.turnFor(left, 45, degrees);
+  Drivetrain.driveFor(forward, 1.2 * Tile * Dt, distanceUnits::in);
+  redRoller();
+  Drivetrain.driveFor(reverse, 1.2 * Tile * Dt, distanceUnits::in);
+  Drivetrain.turnFor(right, 90, degrees);
+  Drivetrain.driveFor(forward, 1.2 * Tile * Dt, distanceUnits::in);
+  redRoller();
+  Drivetrain.driveFor(reverse, 1 * Tile * Dt, distanceUnits::in);
+  Drivetrain.turnFor(left, 45, degrees);
+  Drivetrain.driveFor(forward, 1 * Tile * Dt, distanceUnits::in);
+  extp();
 
 }
 
-void autonomous()
-{
-  task fly(flywheelST);
-  if (redLon){
-    Drivetrain.driveFor(forward,40*Dt,mm);
-    redRoller();
-    for(int i = 0; i<2; i++){
-    flyp();
-    wait(3000,msec);
-    }
-    fly.stop();
-}
-  if (blueLon){
-    Drivetrain.driveFor(forward,30*Dt,mm);
-      blueRoller();
-    for(int i = 0; i<2;i++){
-    flyp();
-    wait(3000,msec);
-    }
-    fly.stop();
-}
-  if (redSon){
-    Drivetrain.driveFor(forward,40*Dt,mm);
-    redRoller();
-    fly.stop();
-  }
-if (blueSon){
-      Drivetrain.driveFor(forward,30*Dt,mm);
-      blueRoller();
-      fly.stop();
-}
+void autonomous(){
+  
+  if(redLon)redL();
+  if(redSon)redS();
+  if(blueSon)blueS();
+  if(blueLon)blueL();
 
 }
