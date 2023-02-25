@@ -52,8 +52,9 @@ FlyPneum.set(false);
 }
 
 void extend(){
-  ExtensionPneum.set(true);
   ExtensionPneum2.set(true);
+  wait(1000,msec);
+  ExtensionPneum.set(true);
   wait(100,msec);
   ExtensionPneum.set(false);
   ExtensionPneum2.set(false);
@@ -67,7 +68,7 @@ void exte(){
 
 void extef(){
   ExtensionPneum.set(false);
-  ExtensionPneum.set(false);
+  ExtensionPneum2.set(false);
 
   
 }
@@ -96,8 +97,11 @@ void  flywheel(){
 void drivercontrol(){
   Controller1.ButtonX.pressed(flyPneum);
   Controller1.ButtonUp.pressed(exte);
-   Controller1.ButtonL1.pressed(flywheel);
-   Controller1.ButtonDown.pressed(extef);
+  Controller1.ButtonL1.pressed(flywheel);
+  Controller1.ButtonDown.pressed(extef);
+  
+
+
 }
 
 
@@ -127,11 +131,7 @@ int main() {
   IntakeMotorGroup.setMaxTorque(200,percent);
   IntakeMotorGroup.setVelocity(200,percent);  
  Competition.drivercontrol(drivercontrol);
- Controller1.ButtonRight.pressed(skillAuton);
-  
-
-
-
+ Controller1.ButtonRight.pressed(skillautonalt);
 }
 
 

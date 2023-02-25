@@ -10,11 +10,7 @@ extern motor_group IntakeMotorGroup;
 extern motor_group FlywheelMotorGroup;
 extern digital_out FlyPneum;
 extern digital_out ExtensionPneum;
-extern motor29 redLED;
-extern motor29 greenLED;
-extern motor29 blueLED;
 extern digital_out ExtensionPneum2;
-
 
 
 /**

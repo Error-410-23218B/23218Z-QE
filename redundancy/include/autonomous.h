@@ -17,4 +17,5 @@ void redSSelect();
 void blueLSelect();
 void blueSSelect();
 void skillAuton();
+void skillautonalt();
 #endif

@@ -23,11 +23,8 @@ motor FlywheelMotorGroupMotorA = motor(PORT15, ratio6_1, false);
 motor FlywheelMotorGroupMotorB = motor(PORT16, ratio6_1, true);
 motor_group FlywheelMotorGroup = motor_group(FlywheelMotorGroupMotorA, FlywheelMotorGroupMotorB);
 digital_out FlyPneum = digital_out(Brain.ThreeWirePort.A);
-digital_out ExtensionPneum = digital_out(Brain.ThreeWirePort.B);
-digital_out ExtensionPneum2 = digital_out(Brain.ThreeWirePort.C);
-motor29 redLED = motor29(Brain.ThreeWirePort.C,false);
-motor29 greenLED = motor29(Brain.ThreeWirePort.D,false);
-motor29 blueLED  = motor29(Brain.ThreeWirePort.E,false);
+digital_out ExtensionPneum = digital_out(Brain.ThreeWirePort.C);
+digital_out ExtensionPneum2 = digital_out(Brain.ThreeWirePort.B);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
