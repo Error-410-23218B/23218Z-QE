@@ -243,7 +243,7 @@ void redS()
   Drivetrain.driveFor(forward, 0.4 * Tile * Dt, vex::inches);
   Drivetrain.turnFor(left, 90, degrees);
   Drivetrain.driveFor(forward, 1 * Tile * Dt, vex::inches);
-  blueRoller();
+  redRoller();
   Drivetrain.turnFor(right, 10, degrees);
   task f1(flywheelST);
   for (int i = 0; i < 3; i++)
@@ -291,46 +291,47 @@ void skillautonalt(){
   Drivetrain.setTimeout(20, sec);
   Drivetrain.driveFor(forward, 30 * Dt, mm);
   redRoller();
+  Drivetrain.driveFor(reverse, 1 * Tile * Dt, distanceUnits::in);
   IntakeMotorGroup.spin(forward);
-  Drivetrain.driveFor(reverse, 1.2 * Tile * Dt, distanceUnits::in);
   Drivetrain.turnFor(right, 90, degrees);
   Drivetrain.driveFor(forward, 1.2 * Tile * Dt, distanceUnits::in);
   IntakeMotorGroup.stop();
   redRoller();
   Drivetrain.turnFor(right,135,degrees);
   IntakeMotorGroup.spin(forward);
-  Drivetrain.driveFor(forward,3 * Tile * Dt,distanceUnits::in);
-  Drivetrain.turnFor(right,90,degrees);
-  Drivetrain.driveFor(reverse,6*Dt,distanceUnits::in);
+  Drivetrain.driveFor(forward,5 * Tile * Dt,distanceUnits::in);
+  Drivetrain.turnFor(left,90,degrees);
+  Drivetrain.driveFor(forward,6*Dt,distanceUnits::in);
   for(int i = 0; i<3;i++){
     flyp();
     wait(1000,msec);
   }
-  Drivetrain.turnFor(left,45,degrees);
-  Drivetrain.driveFor(forward,1.4*Tile*Dt,distanceUnits::in);
-  Drivetrain.turnFor(right,90,degrees);
+  
+  Drivetrain.turnFor(right,45,degrees);
+  Drivetrain.driveFor(forward,2.3*Tile*Dt,distanceUnits::in);
+  Drivetrain.turnFor(left,90,degrees);
   for(int i = 0; i < 3;i++){
     flyp();
     wait(1000,msec);
   }
   f1.stop();
   FlywheelMotorGroup.stop();
-  Drivetrain.driveFor(forward, 2*Tile*Dt,distanceUnits::in);
-  Drivetrain.turnFor(left,90,degrees);
+  Drivetrain.driveFor(reverse, 3*Tile*Dt,distanceUnits::in);
+  Drivetrain.turnFor(right,90,degrees);
   Drivetrain.driveFor(forward,30*Dt,mm);
-  redRoller();
-   IntakeMotorGroup.spin(forward);
-  Drivetrain.driveFor(reverse, 1.2 * Tile * Dt, distanceUnits::in);
+  redRoller(); 
+  Drivetrain.driveFor(reverse, 1 * Tile * Dt, distanceUnits::in);
+  IntakeMotorGroup.spin(forward);
   Drivetrain.turnFor(right, 90, degrees);
-  Drivetrain.driveFor(forward, 1.2 * Tile * Dt, distanceUnits::in);
+  Drivetrain.driveFor(forward, 1.3 * Tile * Dt, distanceUnits::in);
   IntakeMotorGroup.stop();
   redRoller();
   Drivetrain.driveFor(reverse,1*Tile*Dt,distanceUnits::in);
   IntakeMotorGroup.spin(forward);
-  Drivetrain.turnFor(left,45,degrees);
+  Drivetrain.turnFor(right,45,degrees);
   Drivetrain.driveFor(forward,2*Tile*Dt,distanceUnits::in);
   extp();
-  
+
 
 }
 void autonomous(){
