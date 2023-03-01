@@ -54,6 +54,8 @@ int flywheelST()
 // intake method, simply runs intake during autonomous
 int reverseIntake()
 {
+
+
   IntakeMotorGroup.setVelocity(100, percent);
   IntakeMotorGroup.spin(reverse);
   return 0;
