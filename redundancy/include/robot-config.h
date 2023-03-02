@@ -11,7 +11,7 @@ extern motor_group FlywheelMotorGroup;
 extern digital_out FlyPneum;
 extern digital_out ExtensionPneum;
 extern digital_out ExtensionPneum2;
-
+extern digital_out speaker;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

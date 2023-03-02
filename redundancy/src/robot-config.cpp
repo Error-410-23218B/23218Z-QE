@@ -25,7 +25,7 @@ motor_group FlywheelMotorGroup = motor_group(FlywheelMotorGroupMotorA, FlywheelM
 digital_out FlyPneum = digital_out(Brain.ThreeWirePort.A);
 digital_out ExtensionPneum = digital_out(Brain.ThreeWirePort.C);
 digital_out ExtensionPneum2 = digital_out(Brain.ThreeWirePort.B);
-
+digital_out speaker = digital_out(Brain.ThreeWirePort.D);
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 // define variables used for controlling motors based on controller inputs

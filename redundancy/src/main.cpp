@@ -132,6 +132,8 @@ int main() {
   IntakeMotorGroup.setVelocity(200,percent);  
  Competition.drivercontrol(drivercontrol);
  Controller1.ButtonRight.pressed(skillautonalt);
+
 }
 
 
+ 
