@@ -20,11 +20,9 @@
 
 #include "vex.h"
   #include "pid.h"
-  #include "autonomous.h"
-#include "graph.h"
+#include "autonomous.h"
 #include "robot-config.h"
-#include <iostream>
-#include <stdio.h>
+
 
 using namespace vex;
 double flyt;
@@ -83,10 +81,6 @@ void Reverseintake(){
 }
 void  flywheel(){
   task f1(flywheelStep);
-  FlywheelMotorGroup.setVelocity(100,percent);
-  FlywheelMotorGroup.setMaxTorque(100,percent);
-  FlywheelMotorGroup.spin(forward);
-  
   if(Controller1.ButtonL2.pressing()){f1.stop();FlywheelMotorGroup.stop(); }
   
 
